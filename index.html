@@ -23,6 +23,10 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="style.css" />
 
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -48,68 +52,6 @@
         },
       };
     </script>
-
-    <style>
-      body {
-        background-color: #0f1115;
-        color: #e2e8f0;
-        overflow-x: hidden;
-      }
-
-      .grid-bg {
-        background-size: 40px 40px;
-        background-image:
-          linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.03) 1px,
-            transparent 1px
-          ),
-          linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.03) 1px,
-            transparent 1px
-          );
-      }
-
-      .project-card-img {
-        transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-      }
-
-      .project-card:hover .project-card-img {
-        transform: scale(1.03);
-      }
-
-      .section-header {
-        border-top: 1px solid #272a33;
-        padding-top: 2rem;
-        margin-bottom: 4rem;
-      }
-
-      .btn-primary {
-        background: #e2e8f0;
-        color: #0f1115;
-        padding: 1rem 2rem;
-        border-radius: 4px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .btn-primary:hover {
-        background: #fff;
-        transform: translateY(-2px);
-      }
-
-      .tech-icon {
-        filter: grayscale(1) brightness(1.5);
-        transition: all 0.3s ease;
-      }
-      .tech-card:hover .tech-icon {
-        filter: grayscale(0) brightness(1);
-        transform: translateY(-5px);
-      }
-    </style>
   </head>
   <body class="antialiased grid-bg">
     <!-- Navbar -->
@@ -405,76 +347,186 @@
         </div>
 
         <div class="space-y-32">
-          <!-- Project 1 -->
+          <!-- Project 1: Bilma Scents -->
           <div class="group grid md:grid-cols-12 gap-12 items-center reveal">
             <div
               class="md:col-span-7 relative overflow-hidden rounded bg-surface project-card cursor-pointer"
               onclick="openProject(1)">
               <div class="aspect-[16/10]">
                 <img
-                  src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop"
+                  src="/images/bilma-scents-hero.png"
                   class="w-full h-full object-cover project-card-img"
-                  alt="Fintech App" />
+                  alt="Bilma Scents E-commerce Store" />
               </div>
             </div>
             <div class="md:col-span-5">
               <span
-                class="text-accent font-mono text-xs mb-2 block uppercase tracking-widest"
-                >Full Stack / Fintech</span
-              >
-              <h3 class="text-3xl font-bold mb-4">Horizon Wallet</h3>
+                class="text-accent font-mono text-xs mb-2 block uppercase tracking-widest">
+                E-Commerce / Web App
+              </span>
+              <h3 class="text-3xl font-bold mb-4">Bilma Scents</h3>
               <p class="text-secondary leading-relaxed mb-6">
-                A real-time dashboard combining Next.js frontend with a robust
-                Node.js backend for transaction processing and live data
-                streams.
+                Fully functional e-commerce store for perfumes with
+                authentication, cart, and wishlist features for smooth shopping.
               </p>
               <div
                 class="flex flex-wrap gap-2 text-xs font-mono text-secondary">
                 <span class="border border-white/10 px-2 py-1 rounded"
-                  >Next.js</span
+                  >React.js</span
                 >
                 <span class="border border-white/10 px-2 py-1 rounded"
-                  >Node.js</span
+                  >Tailwind CSS</span
                 >
                 <span class="border border-white/10 px-2 py-1 rounded"
-                  >PostgreSQL</span
+                  >Firebase</span
                 >
               </div>
             </div>
           </div>
 
-          <!-- Project 2 -->
+          <!-- Project 2: Recyclo -->
           <div class="group grid md:grid-cols-12 gap-12 items-center reveal">
             <div
               class="md:col-span-7 md:order-2 relative overflow-hidden rounded bg-surface project-card cursor-pointer"
               onclick="openProject(2)">
               <div class="aspect-[16/10]">
                 <img
-                  src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1932&auto=format&fit=crop"
+                  src="/images/recyclo.jpg"
                   class="w-full h-full object-cover project-card-img"
-                  alt="Furniture Store" />
+                  alt="Recyclo Waste Management App" />
               </div>
             </div>
             <div class="md:col-span-5 md:order-1">
               <span
-                class="text-accent font-mono text-xs mb-2 block uppercase tracking-widest"
-                >E-Commerce Architecture</span
-              >
-              <h3 class="text-3xl font-bold mb-4">Nordic Interior</h3>
+                class="text-accent font-mono text-xs mb-2 block uppercase tracking-widest">
+                Mobile App / Full-Stack
+              </span>
+              <h3 class="text-3xl font-bold mb-4">Recyclo</h3>
               <p class="text-secondary leading-relaxed mb-6">
-                Headless commerce solution with high-fidelity frontend
-                interactions and specialized inventory management logic.
+                Waste management app for scheduling pickups, tracking requests,
+                and managing collections efficiently.
               </p>
               <div
                 class="flex flex-wrap gap-2 text-xs font-mono text-secondary">
                 <span class="border border-white/10 px-2 py-1 rounded"
-                  >Shopify Plus</span
+                  >React Native</span
                 >
                 <span class="border border-white/10 px-2 py-1 rounded"
-                  >Liquid</span
+                  >Expo</span
                 >
                 <span class="border border-white/10 px-2 py-1 rounded"
-                  >GSAP</span
+                  >MongoDB</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: UniResolve -->
+          <div class="group grid md:grid-cols-12 gap-12 items-center reveal">
+            <div
+              class="md:col-span-7 relative overflow-hidden rounded bg-surface project-card cursor-pointer"
+              onclick="openProject(3)">
+              <div class="aspect-[16/10]">
+                <img
+                  src="/images/uni-resolve.png"
+                  class="w-full h-full object-cover project-card-img"
+                  alt="UniResolve University Platform" />
+              </div>
+            </div>
+            <div class="md:col-span-5">
+              <span
+                class="text-accent font-mono text-xs mb-2 block uppercase tracking-widest">
+                SaaS / University Platform
+              </span>
+              <h3 class="text-3xl font-bold mb-4">UniResolve</h3>
+              <p class="text-secondary leading-relaxed mb-6">
+                Multi-tenant grievance reporting platform for universities with
+                reporting, tracking, and analytics features.
+              </p>
+              <div
+                class="flex flex-wrap gap-2 text-xs font-mono text-secondary">
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >React.js</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Tailwind CSS</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Express.js</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: MSSN ABUAD -->
+          <div class="group grid md:grid-cols-12 gap-12 items-center reveal">
+            <div
+              class="md:col-span-7 md:order-2 relative overflow-hidden rounded bg-surface project-card cursor-pointer"
+              onclick="openProject(4)">
+              <div class="aspect-[16/10]">
+                <img
+                  src="/images/mssn-abuad-hero.png"
+                  class="w-full h-full object-cover project-card-img"
+                  alt="MSSN ABUAD Website" />
+              </div>
+            </div>
+            <div class="md:col-span-5 md:order-1">
+              <span
+                class="text-accent font-mono text-xs mb-2 block uppercase tracking-widest">
+                Web App / Student Org
+              </span>
+              <h3 class="text-3xl font-bold mb-4">MSSN ABUAD</h3>
+              <p class="text-secondary leading-relaxed mb-6">
+                Official website with blogs, forums, and events for enhancing
+                student engagement and accessibility.
+              </p>
+              <div
+                class="flex flex-wrap gap-2 text-xs font-mono text-secondary">
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >React.js</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Tailwind CSS</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Firebase</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: Triple R Recycling -->
+          <div class="group grid md:grid-cols-12 gap-12 items-center reveal">
+            <div
+              class="md:col-span-7 relative overflow-hidden rounded bg-surface project-card cursor-pointer"
+              onclick="openProject(5)">
+              <div class="aspect-[16/10]">
+                <img
+                  src="/images/triplerrecyclingltd.png"
+                  class="w-full h-full object-cover project-card-img"
+                  alt="Triple R Recycling Website" />
+              </div>
+            </div>
+            <div class="md:col-span-5">
+              <span
+                class="text-accent font-mono text-xs mb-2 block uppercase tracking-widest">
+                Company Website / Recycling
+              </span>
+              <h3 class="text-3xl font-bold mb-4">Triple R Recycling</h3>
+              <p class="text-secondary leading-relaxed mb-6">
+                Company site showcasing recycling services with a PET bottle
+                pickup booking feature for users.
+              </p>
+              <div
+                class="flex flex-wrap gap-2 text-xs font-mono text-secondary">
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >React.js</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Tailwind CSS</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Firebase</span
                 >
               </div>
             </div>
@@ -503,10 +555,9 @@
 
         <div class="grid md:grid-cols-4 gap-8">
           <!-- Frontend -->
-          <div
-            class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+          <div class="glass-card p-10 rounded-2xl reveal">
             <div
-              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8">
               <svg
                 class="w-7 h-7 text-accent group-hover:text-white"
                 fill="none"
@@ -527,10 +578,9 @@
           </div>
 
           <!-- Mobile -->
-          <div
-            class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+          <div class="glass-card p-10 rounded-2xl reveal">
             <div
-              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8">
               <svg
                 class="w-7 h-7 text-accent group-hover:text-white"
                 fill="none"
@@ -556,10 +606,9 @@
           </div>
 
           <!-- Backend -->
-          <div
-            class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+          <div class="glass-card p-10 rounded-2xl reveal">
             <div
-              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8">
               <svg
                 class="w-7 h-7 text-accent group-hover:text-white"
                 fill="none"
@@ -590,10 +639,9 @@
           </div>
 
           <!-- Systems / Integration -->
-          <div
-            class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+          <div class="glass-card p-10 rounded-2xl reveal">
             <div
-              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8">
               <svg
                 class="w-7 h-7 text-accent group-hover:text-white"
                 fill="none"
@@ -692,27 +740,68 @@
           Professional Journey
         </h2>
         <div class="max-w-4xl mx-auto space-y-12">
+          <!-- Freelance -->
           <div
             class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
-            <p class="text-accent font-mono w-32">2023 - PRES</p>
+            <p class="text-accent font-mono w-32">03/2025 – Present</p>
             <div class="flex-1">
-              <h4 class="text-2xl font-bold mb-2">Senior Frontend Lead</h4>
-              <p class="text-slate-500 mb-4">TechSolutions International</p>
+              <h4 class="text-2xl font-bold mb-2">Freelance Web Developer</h4>
+              <p class="text-slate-500 mb-4">Self-Employed</p>
               <p class="text-slate-400">
-                Leading a team of 5 developers to create high-traffic React
-                applications for global clients.
+                Delivered 10+ custom websites and web apps for startups and
+                small businesses, focusing on responsive design, performance,
+                and improving client workflows by up to 50%.
               </p>
             </div>
           </div>
+
+          <!-- Kwilax -->
           <div
             class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
-            <p class="text-accent font-mono w-32">2020 - 2023</p>
+            <p class="text-accent font-mono w-32">03/2025 – Present</p>
             <div class="flex-1">
-              <h4 class="text-2xl font-bold mb-2">Freelance Shopify Expert</h4>
-              <p class="text-slate-500 mb-4">Self-Employed</p>
+              <h4 class="text-2xl font-bold mb-2">Frontend Developer</h4>
+              <p class="text-slate-500 mb-4">Kwilax | Remote, Nigeria</p>
               <p class="text-slate-400">
-                Delivered 30+ custom themes for e-commerce brands, focusing on
-                performance and conversion rates.
+                Designed and developed a responsive fintech interface that
+                streamlined cross-border payments, improving transaction speed
+                by 30% and enhancing user experience for Nigerian businesses
+                funding Alipay in yuan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Byteflow Technologies -->
+          <div
+            class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
+            <p class="text-accent font-mono w-32">03/2025 – Present</p>
+            <div class="flex-1">
+              <h4 class="text-2xl font-bold mb-2">
+                Full-Stack Developer Intern
+              </h4>
+              <p class="text-slate-500 mb-4">
+                Byteflow Technologies | Abuja, Nigeria
+              </p>
+              <p class="text-slate-400">
+                Built scalable user interfaces and REST APIs for ByteArchive
+                (cloud storage) and ByteCollect (school payments), improving
+                system performance by 25% and reducing manual processing time by
+                40%.
+              </p>
+            </div>
+          </div>
+
+          <!-- MSSN ABUAD -->
+          <div
+            class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
+            <p class="text-accent font-mono w-32">03/2025 – Present</p>
+            <div class="flex-1">
+              <h4 class="text-2xl font-bold mb-2">Front-End Developer</h4>
+              <p class="text-slate-500 mb-4">MSSN ABUAD | Ekiti, Nigeria</p>
+              <p class="text-slate-400">
+                Developed and optimized the organization’s website, implementing
+                forums, blogs, and event features that increased student
+                engagement by 60% and improved mobile and desktop accessibility.
               </p>
             </div>
           </div>
@@ -793,143 +882,6 @@
       </div>
     </div>
 
-    <script>
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Animations
-      window.addEventListener("load", () => {
-        const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
-        heroTl.to(".hero-anim", {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          stagger: 0.1,
-        });
-
-        gsap.utils.toArray(".reveal").forEach((el) => {
-          gsap.from(el, {
-            scrollTrigger: {
-              trigger: el,
-              start: "top 92%",
-            },
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-        });
-      });
-
-      const projectsData = [
-        {
-          id: 1,
-          title: "Horizon Wallet",
-          cat: "Full Stack / Fintech",
-          img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop",
-          stack: "Next.js, Node.js, PostgreSQL",
-          desc: "A full-stack crypto asset manager. Built with a scalable Node.js backend to handle complex transaction processing while the frontend provides a high-fidelity, real-time trading experience.",
-        },
-        {
-          id: 2,
-          title: "Nordic Interior",
-          cat: "E-Commerce Architecture",
-          img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1932&auto=format&fit=crop",
-          stack: "Shopify Plus, Liquid, GSAP",
-          desc: "High-end headless commerce. Optimized for high conversion using custom Liquid logic and performance-focused frontend interactions.",
-        },
-      ];
-
-      function openProject(id) {
-        const p = projectsData.find((x) => x.id === id);
-        const modal = document.getElementById("projectModal");
-        document.getElementById("modalContent").innerHTML = `
-                <div class="grid md:grid-cols-2">
-                    <div class="h-64 md:h-auto bg-cover bg-center" style="background-image: url('${p.img}')"></div>
-                    <div class="p-8 md:p-12">
-                        <span class="font-mono text-xs text-accent uppercase tracking-widest mb-2 block">${p.cat}</span>
-                        <h2 class="text-3xl font-bold mb-6">${p.title}</h2>
-                        <div class="space-y-6 text-secondary leading-relaxed">
-                            <p>${p.desc}</p>
-                            <div>
-                                <h4 class="text-white text-sm font-bold mb-3">Project Tech</h4>
-                                <div class="flex flex-wrap gap-2 text-xs font-mono">
-                                    ${p.stack
-                                      .split(",")
-                                      .map(
-                                        (s) =>
-                                          `<span class="bg-white/5 px-3 py-1 rounded border border-white/5">${s.trim()}</span>`,
-                                      )
-                                      .join("")}
-                                </div>
-                            </div>
-                            <div class="pt-6 border-t border-white/10">
-                                <button onclick="closeModal()" class="text-sm font-bold text-white hover:text-accent transition-colors">Close Case Study</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        modal.classList.remove("hidden");
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeModal() {
-        document.getElementById("projectModal").classList.add("hidden");
-        document.body.style.overflow = "auto";
-      }
-
-      // Gemini Planner Logic
-      const apiKey = "";
-      async function generateProjectArchitecture() {
-        const input = document.getElementById("aiInput").value;
-        if (!input) return;
-
-        const btn = document.getElementById("aiBtn");
-        const outputContainer = document.getElementById("aiOutputContainer");
-        const loading = document.getElementById("aiLoading");
-        const resultDiv = document.getElementById("aiResult");
-
-        btn.disabled = true;
-        outputContainer.classList.remove("hidden");
-        loading.classList.remove("hidden");
-        resultDiv.innerHTML = "";
-
-        try {
-          const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-          const payload = {
-            contents: [{ parts: [{ text: input }] }],
-            systemInstruction: {
-              parts: [
-                {
-                  text: "You are a Senior Full Stack Architect. Provide a structured roadmap for the following project brief. Include: 1. Frontend Architecture. 2. Backend & Database Strategy. 3. Key API Endpoints. 4. Dev Complexity. Use professional, technical language.",
-                },
-              ],
-            },
-          };
-
-          const response = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-          });
-          const data = await response.json();
-          const text =
-            data.candidates?.[0]?.content?.parts?.[0]?.text ||
-            "Strategy generation failed.";
-          resultDiv.innerHTML = text
-            .replace(/\n/g, "<br>")
-            .replace(
-              /\*\*(.*?)\*\*/g,
-              '<strong class="text-white">$1</strong>',
-            );
-        } catch (err) {
-          resultDiv.innerHTML =
-            "Consultation service is offline. Please reach out via email.";
-        } finally {
-          loading.classList.add("hidden");
-          btn.disabled = false;
-        }
-      }
-    </script>
+    <script src="/main.js"></script>
   </body>
 </html>
