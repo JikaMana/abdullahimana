@@ -1,0 +1,935 @@
+<!doctype html>
+<html
+  lang="en"
+  class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Abdullahi Yahaya Mana | Full Stack Engineer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet" />
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: "#0f1115",
+              surface: "#16191f",
+              border: "#272a33",
+              primary: "#E2E8F0",
+              secondary: "#94A3B8",
+              accent: "#38BDF8",
+            },
+            fontFamily: {
+              sans: ["Manrope", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #0f1115;
+        color: #e2e8f0;
+        overflow-x: hidden;
+      }
+
+      .grid-bg {
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          );
+      }
+
+      .project-card-img {
+        transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      .project-card:hover .project-card-img {
+        transform: scale(1.03);
+      }
+
+      .section-header {
+        border-top: 1px solid #272a33;
+        padding-top: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .btn-primary {
+        background: #e2e8f0;
+        color: #0f1115;
+        padding: 1rem 2rem;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .btn-primary:hover {
+        background: #fff;
+        transform: translateY(-2px);
+      }
+
+      .tech-icon {
+        filter: grayscale(1) brightness(1.5);
+        transition: all 0.3s ease;
+      }
+      .tech-card:hover .tech-icon {
+        filter: grayscale(0) brightness(1);
+        transform: translateY(-5px);
+      }
+    </style>
+  </head>
+  <body class="antialiased grid-bg">
+    <!-- Navbar -->
+    <nav
+      class="fixed w-full z-50 top-0 bg-[#0f1115]/80 backdrop-blur-md border-b border-white/5">
+      <div
+        class="container mx-auto px-6 h-20 flex justify-between items-center">
+        <a
+          href="#"
+          class="text-lg font-bold tracking-tight">
+          MANA<span class="text-accent">.</span>
+        </a>
+        <div
+          class="hidden md:flex items-center gap-8 text-sm font-medium text-secondary">
+          <a
+            href="#work"
+            class="hover:text-primary transition-colors"
+            >Work</a
+          >
+          <a
+            href="#stack"
+            class="hover:text-primary transition-colors"
+            >Stack</a
+          >
+          <a
+            href="#planner"
+            class="hover:text-primary transition-colors"
+            >Planner</a
+          >
+          <a
+            href="#contact"
+            class="hover:text-primary transition-colors">
+            Contact
+          </a>
+        </div>
+
+        <a
+          href="ABDULLAHI-MANA-YAHAYA-CV.pdf"
+          target="_blank"
+          class="flex items-center gap-2 px-4 py-1.5 border border-accent/30 rounded text-accent hover:bg-accent/10 transition-all">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+            <path
+              d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+          </svg>
+          Resume
+        </a>
+      </div>
+    </nav>
+
+    <!-- Refined Hero Section -->
+    <section class="min-h-screen flex items-center pt-20">
+      <div class="container mx-auto px-6">
+        <div class="max-w-5xl">
+          <div class="flex items-center gap-3 mb-6 opacity-0 hero-anim">
+            <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+            <span
+              class="font-mono text-xs uppercase tracking-widest text-accent"
+              >Full Stack Engineer - Frontend Specialist</span
+            >
+          </div>
+
+          <h1
+            class="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1] tracking-tighter mb-10 text-primary">
+            <div class="overflow-hidden">
+              <span class="block hero-anim translate-y-full"
+                >Architecting robust</span
+              >
+            </div>
+            <div class="overflow-hidden">
+              <span class="block hero-anim translate-y-full text-secondary"
+                >Full-Stack systems</span
+              >
+            </div>
+            <div class="overflow-hidden">
+              <span class="block hero-anim translate-y-full"
+                >with UI precision.</span
+              >
+            </div>
+          </h1>
+
+          <div
+            class="grid md:grid-cols-2 gap-12 items-start opacity-0 hero-anim">
+            <p class="text-lg text-secondary leading-relaxed">
+              I am <strong>Abdullahi Yahaya Mana.</strong> While my current
+              focus is crafting immersive frontend experiences, I build with a
+              full-stack mindset-ensuring performance, scalability, and seamless
+              data architecture from the ground up.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="#work"
+                class="btn-primary">
+                Explore Projects
+              </a>
+              <a
+                href="#contact"
+                class="px-8 py-4 border border-white/10 rounded font-semibold hover:bg-white/5 transition-all">
+                Let's Talk
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack with Icons -->
+    <section
+      id="stack"
+      class="py-32 bg-surface/20">
+      <div class="container mx-auto px-6">
+        <div class="section-header reveal flex justify-between items-end mb-12">
+          <h2 class="text-3xl font-bold">Tech Stack</h2>
+          <span
+            class="font-mono text-xs text-secondary uppercase tracking-widest">
+            Core Capabilities
+          </span>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <!-- HTML -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/html5/E34F26"
+              class="w-10 h-10 tech-icon"
+              alt="HTML5" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              HTML
+            </span>
+          </div>
+
+          <!-- CSS -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/css/1572B6"
+              class="w-10 h-10 tech-icon"
+              alt="CSS3" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              CSS3
+            </span>
+          </div>
+
+          <!-- JavaScript -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/javascript/F7DF1E"
+              class="w-10 h-10 tech-icon"
+              alt="JavaScript" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              JavaScript
+            </span>
+          </div>
+
+          <!-- TypeScript -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/typescript/3178C6"
+              class="w-10 h-10 tech-icon"
+              alt="TypeScript" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              TypeScript
+            </span>
+          </div>
+
+          <!-- React -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/react/61DAFB"
+              class="w-10 h-10 tech-icon"
+              alt="React" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              React
+            </span>
+          </div>
+
+          <!-- Next.js -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/nextdotjs/ffffff"
+              class="w-10 h-10 tech-icon"
+              alt="Next.js" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              Next.js
+            </span>
+          </div>
+
+          <!-- Tailwind CSS -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/tailwindcss/06B6D4"
+              class="w-10 h-10 tech-icon"
+              alt="Tailwind CSS" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              Tailwind
+            </span>
+          </div>
+
+          <!-- Node.js -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/nodedotjs/339933"
+              class="w-10 h-10 tech-icon"
+              alt="Node.js" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              Node.js
+            </span>
+          </div>
+
+          <!-- MongoDB -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/mongodb/47A248"
+              class="w-10 h-10 tech-icon"
+              alt="MongoDB" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              NoSQL / MongoDB
+            </span>
+          </div>
+
+          <!-- PostgreSQL -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/postgresql/4169E1"
+              class="w-10 h-10 tech-icon"
+              alt="PostgreSQL" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              SQL / Postgres
+            </span>
+          </div>
+
+          <!-- Firebase -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/firebase/FFCA28"
+              class="w-10 h-10 tech-icon"
+              alt="Firebase" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              Firebase
+            </span>
+          </div>
+
+          <!-- Webflow -->
+          <div
+            class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
+            <img
+              src="https://cdn.simpleicons.org/webflow/4353FF"
+              class="w-10 h-10 tech-icon"
+              alt="Webflow" />
+            <span
+              class="text-xs font-mono uppercase tracking-widest text-secondary">
+              CMS / Webflow
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Projects -->
+    <section
+      id="work"
+      class="py-32">
+      <div class="container mx-auto px-6">
+        <div class="section-header reveal flex justify-between items-end">
+          <h2 class="text-3xl font-bold">Selected Work</h2>
+          <span class="font-mono text-xs text-secondary">(03)</span>
+        </div>
+
+        <div class="space-y-32">
+          <!-- Project 1 -->
+          <div class="group grid md:grid-cols-12 gap-12 items-center reveal">
+            <div
+              class="md:col-span-7 relative overflow-hidden rounded bg-surface project-card cursor-pointer"
+              onclick="openProject(1)">
+              <div class="aspect-[16/10]">
+                <img
+                  src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop"
+                  class="w-full h-full object-cover project-card-img"
+                  alt="Fintech App" />
+              </div>
+            </div>
+            <div class="md:col-span-5">
+              <span
+                class="text-accent font-mono text-xs mb-2 block uppercase tracking-widest"
+                >Full Stack / Fintech</span
+              >
+              <h3 class="text-3xl font-bold mb-4">Horizon Wallet</h3>
+              <p class="text-secondary leading-relaxed mb-6">
+                A real-time dashboard combining Next.js frontend with a robust
+                Node.js backend for transaction processing and live data
+                streams.
+              </p>
+              <div
+                class="flex flex-wrap gap-2 text-xs font-mono text-secondary">
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Next.js</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Node.js</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >PostgreSQL</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="group grid md:grid-cols-12 gap-12 items-center reveal">
+            <div
+              class="md:col-span-7 md:order-2 relative overflow-hidden rounded bg-surface project-card cursor-pointer"
+              onclick="openProject(2)">
+              <div class="aspect-[16/10]">
+                <img
+                  src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1932&auto=format&fit=crop"
+                  class="w-full h-full object-cover project-card-img"
+                  alt="Furniture Store" />
+              </div>
+            </div>
+            <div class="md:col-span-5 md:order-1">
+              <span
+                class="text-accent font-mono text-xs mb-2 block uppercase tracking-widest"
+                >E-Commerce Architecture</span
+              >
+              <h3 class="text-3xl font-bold mb-4">Nordic Interior</h3>
+              <p class="text-secondary leading-relaxed mb-6">
+                Headless commerce solution with high-fidelity frontend
+                interactions and specialized inventory management logic.
+              </p>
+              <div
+                class="flex flex-wrap gap-2 text-xs font-mono text-secondary">
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Shopify Plus</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >Liquid</span
+                >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >GSAP</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section
+      id="services"
+      class="py-32 bg-dark-900/50">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+          <div class="reveal">
+            <h2 class="text-accent font-mono uppercase tracking-widest mb-2">
+              What I offer
+            </h2>
+            <h3 class="text-3xl md:text-4xl font-bold">Services & Expertise</h3>
+          </div>
+          <p class="text-slate-500 max-w-sm mt-4 md:mt-0 reveal">
+            Tailored digital solutions designed to help your business grow and
+            scale efficiently.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-8">
+          <!-- Frontend -->
+          <div
+            class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+            <div
+              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+              <svg
+                class="w-7 h-7 text-accent group-hover:text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <h4 class="text-2xl font-bold mb-4">Frontend Development</h4>
+            <p class="text-slate-400 leading-relaxed">
+              Modern, responsive, and high-performance interfaces built with
+              React, Next.js, Tailwind CSS, and clean component architecture.
+            </p>
+          </div>
+
+          <!-- Mobile -->
+          <div
+            class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+            <div
+              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+              <svg
+                class="w-7 h-7 text-accent group-hover:text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2z" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 18h2" />
+              </svg>
+            </div>
+            <h4 class="text-2xl font-bold mb-4">Mobile Development</h4>
+            <p class="text-slate-400 leading-relaxed">
+              Cross-platform mobile applications using React Native and Expo,
+              focused on performance, scalability, and real-world use cases.
+            </p>
+          </div>
+
+          <!-- Backend -->
+          <div
+            class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+            <div
+              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+              <svg
+                class="w-7 h-7 text-accent group-hover:text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16v4H4V6z" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 14h16v4H4v-4z" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 10v4M16 10v4" />
+              </svg>
+            </div>
+            <h4 class="text-2xl font-bold mb-4">Backend & APIs</h4>
+            <p class="text-slate-400 leading-relaxed">
+              RESTful APIs and backend logic built with Node.js, Express,
+              MongoDB, and PostgreSQL, designed for security and scalability.
+            </p>
+          </div>
+
+          <!-- Systems / Integration -->
+          <div
+            class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+            <div
+              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+              <svg
+                class="w-7 h-7 text-accent group-hover:text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7h8M8 17h8" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 7v10" />
+                <circle
+                  cx="12"
+                  cy="4"
+                  r="2" />
+                <circle
+                  cx="12"
+                  cy="20"
+                  r="2" />
+              </svg>
+            </div>
+            <h4 class="text-2xl font-bold mb-4">Systems & Integration</h4>
+            <p class="text-slate-400 leading-relaxed">
+              Integrating third-party services, authentication, databases, and
+              cloud tools to power real-world products and platforms.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Project Planner -->
+    <section
+      id="planner"
+      class="py-32">
+      <div class="container mx-auto px-6 max-w-4xl">
+        <div
+          class="bg-surface border border-white/5 rounded-lg p-8 md:p-12 reveal shadow-2xl">
+          <div class="mb-10 text-center">
+            <span
+              class="font-mono text-xs text-accent uppercase tracking-widest mb-2 block"
+              >Business Intelligence Tool</span
+            >
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Project Scope Planner
+            </h2>
+            <p class="text-secondary max-w-lg mx-auto">
+              Describe your goals to receive a full-stack technical roadmap
+              including architecture, database schemas, and UX strategies.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <textarea
+                id="aiInput"
+                class="w-full bg-[#0f1115] border border-white/10 rounded p-4 text-primary focus:border-accent outline-none min-h-[150px] transition-colors"
+                placeholder="E.g., I'm building a multi-vendor marketplace with real-time notifications and payment processing..."></textarea>
+            </div>
+            <div class="flex justify-center">
+              <button
+                onclick="generateProjectArchitecture()"
+                id="aiBtn"
+                class="btn-primary">
+                Generate Roadmap
+              </button>
+            </div>
+          </div>
+
+          <div
+            id="aiOutputContainer"
+            class="hidden mt-10 pt-10 border-t border-white/5">
+            <div
+              id="aiLoading"
+              class="hidden flex flex-col items-center gap-4 text-sm text-secondary">
+              <div
+                class="w-6 h-6 border-2 border-accent border-t-transparent rounded-full animate-spin"></div>
+              Analyzing requirements...
+            </div>
+            <div
+              id="aiResult"
+              class="prose prose-invert prose-sm max-w-none text-secondary"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-32 bg-dark-950">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-16 text-center reveal">
+          Professional Journey
+        </h2>
+        <div class="max-w-4xl mx-auto space-y-12">
+          <div
+            class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
+            <p class="text-accent font-mono w-32">2023 - PRES</p>
+            <div class="flex-1">
+              <h4 class="text-2xl font-bold mb-2">Senior Frontend Lead</h4>
+              <p class="text-slate-500 mb-4">TechSolutions International</p>
+              <p class="text-slate-400">
+                Leading a team of 5 developers to create high-traffic React
+                applications for global clients.
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
+            <p class="text-accent font-mono w-32">2020 - 2023</p>
+            <div class="flex-1">
+              <h4 class="text-2xl font-bold mb-2">Freelance Shopify Expert</h4>
+              <p class="text-slate-500 mb-4">Self-Employed</p>
+              <p class="text-slate-400">
+                Delivered 30+ custom themes for e-commerce brands, focusing on
+                performance and conversion rates.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      id="contact"
+      class="py-20 border-t border-white/5 bg-[#0d0f12]">
+      <div class="container mx-auto px-6">
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
+          <div>
+            <h2 class="text-2xl font-bold mb-6">Let's build something.</h2>
+            <a
+              href="mailto:yahayaabdullahimana@gmail.com"
+              class="text-3xl md:text-5xl font-light text-secondary hover:text-primary transition-all border-b border-white/10 hover:border-accent pb-2">
+              yahayaabdullahimana@gmail.com
+            </a>
+          </div>
+          <div class="flex gap-8 text-sm font-medium text-secondary">
+            <a
+              href="#"
+              class="hover:text-primary transition-colors"
+              >Instagram</a
+            >
+            <a
+              href="#"
+              class="hover:text-primary transition-colors"
+              >GitHub</a
+            >
+            <a
+              href="#"
+              class="hover:text-primary transition-colors"
+              >LinkedIn</a
+            >
+          </div>
+        </div>
+        <div
+          class="mt-20 text-xs font-mono text-[#4b5563] flex justify-between">
+          <p>
+            &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            Abdullahi Yahaya Mana
+          </p>
+          <p>Full Stack Engineering / Nigeria</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div
+      id="projectModal"
+      class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+      <div
+        class="absolute inset-0 bg-[#0f1115]/95 backdrop-blur-sm"
+        onclick="closeModal()"></div>
+      <div
+        class="bg-surface w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded shadow-2xl relative z-10 border border-white/10">
+        <button
+          onclick="closeModal()"
+          class="absolute top-6 right-6 text-secondary hover:text-white z-50 p-2 bg-black/20 rounded-full">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Animations
+      window.addEventListener("load", () => {
+        const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
+        heroTl.to(".hero-anim", {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.1,
+        });
+
+        gsap.utils.toArray(".reveal").forEach((el) => {
+          gsap.from(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 92%",
+            },
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        });
+      });
+
+      const projectsData = [
+        {
+          id: 1,
+          title: "Horizon Wallet",
+          cat: "Full Stack / Fintech",
+          img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop",
+          stack: "Next.js, Node.js, PostgreSQL",
+          desc: "A full-stack crypto asset manager. Built with a scalable Node.js backend to handle complex transaction processing while the frontend provides a high-fidelity, real-time trading experience.",
+        },
+        {
+          id: 2,
+          title: "Nordic Interior",
+          cat: "E-Commerce Architecture",
+          img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1932&auto=format&fit=crop",
+          stack: "Shopify Plus, Liquid, GSAP",
+          desc: "High-end headless commerce. Optimized for high conversion using custom Liquid logic and performance-focused frontend interactions.",
+        },
+      ];
+
+      function openProject(id) {
+        const p = projectsData.find((x) => x.id === id);
+        const modal = document.getElementById("projectModal");
+        document.getElementById("modalContent").innerHTML = `
+                <div class="grid md:grid-cols-2">
+                    <div class="h-64 md:h-auto bg-cover bg-center" style="background-image: url('${p.img}')"></div>
+                    <div class="p-8 md:p-12">
+                        <span class="font-mono text-xs text-accent uppercase tracking-widest mb-2 block">${p.cat}</span>
+                        <h2 class="text-3xl font-bold mb-6">${p.title}</h2>
+                        <div class="space-y-6 text-secondary leading-relaxed">
+                            <p>${p.desc}</p>
+                            <div>
+                                <h4 class="text-white text-sm font-bold mb-3">Project Tech</h4>
+                                <div class="flex flex-wrap gap-2 text-xs font-mono">
+                                    ${p.stack
+                                      .split(",")
+                                      .map(
+                                        (s) =>
+                                          `<span class="bg-white/5 px-3 py-1 rounded border border-white/5">${s.trim()}</span>`,
+                                      )
+                                      .join("")}
+                                </div>
+                            </div>
+                            <div class="pt-6 border-t border-white/10">
+                                <button onclick="closeModal()" class="text-sm font-bold text-white hover:text-accent transition-colors">Close Case Study</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        document.getElementById("projectModal").classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
+
+      // Gemini Planner Logic
+      const apiKey = "";
+      async function generateProjectArchitecture() {
+        const input = document.getElementById("aiInput").value;
+        if (!input) return;
+
+        const btn = document.getElementById("aiBtn");
+        const outputContainer = document.getElementById("aiOutputContainer");
+        const loading = document.getElementById("aiLoading");
+        const resultDiv = document.getElementById("aiResult");
+
+        btn.disabled = true;
+        outputContainer.classList.remove("hidden");
+        loading.classList.remove("hidden");
+        resultDiv.innerHTML = "";
+
+        try {
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+          const payload = {
+            contents: [{ parts: [{ text: input }] }],
+            systemInstruction: {
+              parts: [
+                {
+                  text: "You are a Senior Full Stack Architect. Provide a structured roadmap for the following project brief. Include: 1. Frontend Architecture. 2. Backend & Database Strategy. 3. Key API Endpoints. 4. Dev Complexity. Use professional, technical language.",
+                },
+              ],
+            },
+          };
+
+          const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const data = await response.json();
+          const text =
+            data.candidates?.[0]?.content?.parts?.[0]?.text ||
+            "Strategy generation failed.";
+          resultDiv.innerHTML = text
+            .replace(/\n/g, "<br>")
+            .replace(
+              /\*\*(.*?)\*\*/g,
+              '<strong class="text-white">$1</strong>',
+            );
+        } catch (err) {
+          resultDiv.innerHTML =
+            "Consultation service is offline. Please reach out via email.";
+        } finally {
+          loading.classList.add("hidden");
+          btn.disabled = false;
+        }
+      }
+    </script>
+  </body>
+</html>

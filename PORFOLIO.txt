@@ -1,0 +1,1301 @@
+PORFOLIO
+VERSION 1
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahaya Abdullahi Mana | Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            950: '#020408',
+                            900: '#050810', 
+                            800: '#0a101e',
+                        },
+                        accent: {
+                            DEFAULT: '#0EA5E9',
+                            light: '#38bdf8',
+                            dark: '#0284c7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #020408;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .glass-card {
+            background: rgba(10, 16, 30, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(14, 165, 233, 0.4);
+            background: rgba(10, 16, 30, 0.6);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 40%, #0EA5E9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(14, 165, 233, 0.05) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+
+        .tech-icon-box {
+            @apply flex flex-col items-center justify-center p-8 rounded-xl glass-card text-center gap-4 transition-all duration-500;
+        }
+        
+        .tech-icon-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px -20px rgba(14, 165, 233, 0.2);
+        }
+
+        .tech-icon-box img {
+            width: 40px;
+            height: 40px;
+            filter: grayscale(1) brightness(2);
+            transition: filter 0.3s ease;
+        }
+
+        .tech-icon-box:hover img {
+            filter: grayscale(0) brightness(1);
+        }
+
+        .modal-active { overflow: hidden; }
+
+        .reveal-text { transform: translateY(105%); }
+        
+        .ai-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .project-card-overlay {
+            background: linear-gradient(0deg, rgba(2, 4, 8, 0.9) 0%, rgba(2, 4, 8, 0.4) 50%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="fixed inset-0 z-[200] hidden flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-dark-950/98 backdrop-blur-2xl" onclick="closeModal()"></div>
+        <div class="glass-card w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-[2rem] relative z-10 p-8 md:p-16">
+            <button onclick="closeModal()" class="absolute top-8 right-8 text-slate-400 hover:text-white transition-all hover:rotate-90">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="fixed w-full z-[100] top-0 bg-dark-950/20 backdrop-blur-xl border-b border-white/5">
+        <div class="container mx-auto px-8 py-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold font-mono tracking-tighter">
+                MANA<span class="text-accent animate-pulse">.</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-12 text-[10px] font-bold tracking-[0.3em] uppercase font-mono">
+                <a href="#work" class="hover:text-accent transition-colors">Projects</a>
+                <a href="#stack" class="hover:text-accent transition-colors">Experience</a>
+                <a href="#ai-architect" class="text-accent hover:brightness-125">AI Solutions</a>
+                <a href="#contact" class="px-6 py-2.5 border border-white/10 rounded-full hover:bg-white hover:text-dark-950 transition-all">Connect</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <div class="absolute inset-0 hero-pattern opacity-40"></div>
+        <div class="absolute -top-24 -right-24 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[160px]"></div>
+        <div class="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[160px]"></div>
+
+        <div class="container mx-auto px-8 relative z-10">
+            <div class="max-w-6xl">
+                <div class="mb-8 overflow-hidden">
+                    <span class="hero-tag inline-block text-accent font-mono text-xs tracking-[0.6em] uppercase opacity-0">
+                        Senior Frontend Architect
+                    </span>
+                </div>
+                
+                <h1 class="hero-title text-7xl md:text-[10rem] font-bold leading-[0.85] mb-12 tracking-tighter">
+                    <span class="block overflow-hidden"><span class="reveal-text block">Digital</span></span>
+                    <span class="block overflow-hidden"><span class="reveal-text block text-gradient">Mastery.</span></span>
+                </h1>
+
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-12">
+                    <p class="hero-desc text-slate-400 text-xl md:text-2xl max-w-xl leading-relaxed opacity-0">
+                        Crafting high-performance digital architectures for visionary brands. Driven by <span class="text-white">logic</span>, defined by <span class="text-white">aesthetics</span>.
+                    </p>
+
+                    <div class="hero-btns flex items-center gap-10 opacity-0">
+                        <a href="#work" class="group flex items-center gap-4 text-sm font-mono tracking-widest uppercase">
+                            Explore Work
+                            <span class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-accent group-hover:border-accent transition-all">
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="stack" class="py-24 relative border-y border-white/5">
+        <div class="container mx-auto px-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="tech-icon-box reveal"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="React"><span class="text-[10px] font-mono tracking-widest uppercase">React</span></div>
+                <div class="tech-icon-box reveal"><img src="https://cdn.simpleicons.org/nextdotjs/white" alt="Next.js"><span class="text-[10px] font-mono tracking-widest uppercase">Next.js</span></div>
+                <div class="tech-icon-box reveal"><img src="https://cdn.simpleicons.org/shopify/96bf48" alt="Shopify"><span class="text-[10px] font-mono tracking-widest uppercase">Shopify</span></div>
+                <div class="tech-icon-box reveal"><img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind"><span class="text-[10px] font-mono tracking-widest uppercase">Tailwind</span></div>
+                <div class="tech-icon-box reveal"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript"><span class="text-[10px] font-mono tracking-widest uppercase">TypeScript</span></div>
+                <div class="tech-icon-box reveal"><img src="https://cdn.simpleicons.org/greensock/88CE02" alt="GSAP"><span class="text-[10px] font-mono tracking-widest uppercase">GSAP</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid (Now before AI Section) -->
+    <section id="work" class="py-32 bg-dark-900/40">
+        <div class="container mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-32 reveal">
+                <div class="max-w-2xl">
+                    <h2 class="text-accent font-mono text-xs tracking-[0.5em] uppercase mb-6">Selected Works</h2>
+                    <h3 class="text-6xl md:text-8xl font-bold tracking-tighter leading-none">Portfolio <br/>Archive.</h3>
+                </div>
+                <p class="text-slate-500 font-mono text-xs hidden md:block">EST. 2020 — 2026</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12" id="projectsGrid">
+                <!-- Projects injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Project Architect Section -->
+    <section id="ai-architect" class="py-32 relative overflow-hidden bg-dark-950">
+        <div class="container mx-auto px-8 max-w-6xl">
+            <div class="glass-card rounded-[3rem] p-8 md:p-20 relative overflow-hidden border-white/10">
+                <!-- Brand Watermark -->
+                <div class="absolute bottom-0 right-0 p-12 opacity-[0.03] select-none">
+                    <span class="font-bold text-[15rem] leading-none uppercase">MANA</span>
+                </div>
+                
+                <div class="relative z-10 grid lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mb-8">
+                            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h2 class="text-accent font-mono text-xs tracking-[0.4em] uppercase mb-4">AI-Driven Consulting</h2>
+                        <h3 class="text-5xl font-bold mb-8 tracking-tight">Technical Strategy <br/>in Seconds.</h3>
+                        <p class="text-slate-400 text-lg mb-10 leading-relaxed">
+                            Describe your product vision. My custom-trained Gemini agent will outline the technical stack, infrastructure, and performance strategy required to scale.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col gap-6">
+                        <div class="relative">
+                            <textarea id="aiInput" placeholder="Describe your project (e.g. A real-time fintech dashboard for global assets)" class="w-full bg-dark-950 border border-white/10 rounded-3xl p-8 text-white focus:outline-none focus:border-accent transition-all min-h-[220px] resize-none text-lg placeholder:text-slate-600"></textarea>
+                        </div>
+                        <button onclick="generateProjectArchitecture()" id="aiBtn" class="bg-white text-dark-950 px-12 py-6 rounded-full font-bold self-start hover:bg-accent hover:text-white transition-all transform hover:-translate-y-1 flex items-center gap-4">
+                            Start Architecting
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="aiOutputContainer" class="hidden mt-20 pt-20 border-t border-white/10 relative z-10">
+                    <div id="aiLoading" class="hidden ai-shimmer h-64 rounded-3xl flex items-center justify-center">
+                        <div class="flex flex-col items-center gap-4">
+                            <div class="w-10 h-10 border-2 border-accent border-t-transparent rounded-full animate-spin"></div>
+                            <span class="text-accent font-mono text-xs tracking-widest uppercase">Analyzing Architecture...</span>
+                        </div>
+                    </div>
+                    <div id="aiResult" class="prose prose-invert max-w-none text-slate-300 leading-relaxed font-sans text-lg">
+                        <!-- AI Result -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-40 border-t border-white/5">
+        <div class="container mx-auto px-8">
+            <div class="max-w-4xl">
+                <h3 class="text-7xl md:text-[9rem] font-bold mb-20 tracking-tighter leading-none">Let's <br/><span class="text-gradient">Connect.</span></h3>
+                <div class="flex flex-wrap gap-12 items-center">
+                    <a href="mailto:hello@yahayamana.com" class="text-2xl md:text-4xl text-white hover:text-accent transition-colors underline decoration-white/20 underline-offset-8">hello@yahayamana.com</a>
+                    <div class="flex gap-8 text-xs font-mono tracking-widest uppercase text-slate-500">
+                        <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                        <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                        <a href="#" class="hover:text-white transition-colors">Github</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-40 flex justify-between items-center text-[10px] font-mono tracking-[0.4em] uppercase text-slate-600">
+                <p>&copy; 2026 MANA ARCHITECTS</p>
+                <p>NIGERIA / REMOTE</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const apiKey = ""; 
+        const projectsData = [
+            { id: 1, title: "Horizon Wallet", cat: "Fintech Architecture", img: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2232&auto=format&fit=crop", stack: "Next.js, Web3, GSAP", desc: "A high-end crypto dashboard focusing on seamless user onboarding and real-time visualization of blockchain assets." },
+            { id: 2, title: "Nordic Interior", cat: "E-Commerce", img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2232&auto=format&fit=crop", stack: "Shopify Plus, Liquid, JS", desc: "Premium e-commerce experience for a Scandinavian furniture brand." },
+            { id: 3, title: "Syncro App", cat: "SaaS Design", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop", stack: "React, Firebase, Tailwind", desc: "A task management suite for creative teams." },
+            { id: 4, title: "Aura Skincare", cat: "Luxury Retail", img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=2232&auto=format&fit=crop", stack: "Liquid, SCSS, React", desc: "Redefining beauty retail with a custom subscription engine." }
+        ];
+
+        // Inject Projects
+        const grid = document.getElementById('projectsGrid');
+        projectsData.forEach(p => {
+            grid.innerHTML += `
+                <div class="group relative cursor-pointer reveal h-[600px] overflow-hidden rounded-[2.5rem] glass-card" onclick="openProject(${p.id})">
+                    <img src="${p.img}" class="w-full h-full object-cover opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-1000 grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 project-card-overlay"></div>
+                    <div class="absolute bottom-12 left-12 right-12">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <p class="text-accent font-mono text-[10px] uppercase tracking-[0.4em] mb-4">${p.cat}</p>
+                                <h4 class="text-4xl font-bold text-white group-hover:text-accent transition-all">${p.title}</h4>
+                            </div>
+                            <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center backdrop-blur-md group-hover:bg-white group-hover:text-dark-950 transition-all transform group-hover:-rotate-45">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="1.5"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        async function callGemini(prompt, systemInstruction = "") {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: systemInstruction }] }
+            };
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (e) {
+                    await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
+                }
+            }
+            throw new Error("API Offline");
+        }
+
+        async function generateProjectArchitecture() {
+            const input = document.getElementById('aiInput').value;
+            if (!input) return;
+            const btn = document.getElementById('aiBtn');
+            const outputContainer = document.getElementById('aiOutputContainer');
+            const loading = document.getElementById('aiLoading');
+            const resultDiv = document.getElementById('aiResult');
+
+            btn.disabled = true;
+            outputContainer.classList.remove('hidden');
+            loading.classList.remove('hidden');
+            resultDiv.innerHTML = "";
+            outputContainer.scrollIntoView({ behavior: 'smooth' });
+
+            try {
+                const systemPrompt = "You are Yahaya Mana's AI Architect. Provide a premium technical strategy for the given idea. Use clean, professional language. Focus on scalability, security, and UI/UX excellence.";
+                const response = await callGemini(input, systemPrompt);
+                resultDiv.innerHTML = response.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>');
+            } catch (err) {
+                resultDiv.innerHTML = `<span class="text-red-400">Strategy Engine Interrupted. Please try again.</span>`;
+            } finally {
+                loading.classList.add('hidden');
+                btn.disabled = false;
+            }
+        }
+
+        async function openProject(id) {
+            const p = projectsData.find(x => x.id === id);
+            const modal = document.getElementById('projectModal');
+            document.getElementById('modalContent').innerHTML = `
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div class="order-2 lg:order-1">
+                        <p class="text-accent font-mono text-xs tracking-widest mb-6 uppercase">Technical Breakdown</p>
+                        <h2 class="text-5xl md:text-7xl font-bold mb-10 tracking-tighter">${p.title}</h2>
+                        <p class="text-slate-400 text-xl leading-relaxed mb-12">${p.desc}</p>
+                        
+                        <div class="mb-12 p-8 rounded-3xl bg-white/5 border border-white/10">
+                            <p class="text-[10px] font-mono tracking-widest text-slate-500 uppercase mb-4">Architecture Insight</p>
+                            <div id="aiTechResult" class="text-slate-300 italic leading-relaxed">
+                                <button onclick="explainTech('${p.title}', '${p.stack}')" class="text-accent hover:underline flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.586 15.657l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zM16 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1z"></path></svg>
+                                    Ask AI to explain chosen stack
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-3">
+                            ${p.stack.split(',').map(s => `<span class="px-6 py-3 bg-white/5 rounded-full text-xs font-mono border border-white/10 text-white">${s.trim()}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2 rounded-[2rem] overflow-hidden aspect-[4/5] bg-cover bg-center border border-white/10" style="background-image: url('${p.img}')">
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-active');
+            gsap.from('#modalContent', { opacity: 0, scale: 0.95, duration: 0.6, ease: "expo.out" });
+        }
+
+        async function explainTech(title, stack) {
+            const result = document.getElementById('aiTechResult');
+            result.innerHTML = '<span class="animate-pulse flex items-center gap-3"><div class="w-2 h-2 bg-accent rounded-full animate-ping"></div> Synthesizing logic...</span>';
+            try {
+                const response = await callGemini(`Briefly explain the architectural benefit of using ${stack} for a ${title} project. Focus on engineering efficiency.`);
+                result.innerText = response;
+            } catch (e) {
+                result.innerText = "Architecture engine offline.";
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+            tl.to('.hero-tag', { opacity: 1, y: 0, duration: 1 })
+              .to('.reveal-text', { y: 0, duration: 1.5, stagger: 0.2 }, "-=0.8")
+              .to('.hero-desc', { opacity: 1, y: 0, duration: 1 }, "-=1.2")
+              .to('.hero-btns', { opacity: 1, y: 0, duration: 1 }, "-=1");
+
+            gsap.utils.toArray('.reveal').forEach(el => {
+                gsap.from(el, { scrollTrigger: { trigger: el, start: "top 92%" }, y: 50, opacity: 0, duration: 1.4, ease: "power4.out" });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+VERSION 2
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahaya Abdullahi Mana | Professional Frontend Engineer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            950: '#050810',
+                            900: '#0B1120', 
+                            800: '#111827',
+                            700: '#1F2937',
+                        },
+                        accent: {
+                            DEFAULT: '#0EA5E9',
+                            light: '#7DD3FC',
+                            dark: '#0369A1'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050810;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .image-mask {
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050810; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0EA5E9; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Nav -->
+    <nav class="fixed w-full z-[100] top-0 bg-dark-950/80 backdrop-blur-xl border-b border-white/5">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold font-mono tracking-tighter">
+                MANA<span class="text-accent">.</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-10 text-sm font-medium tracking-wide uppercase">
+                <a href="#about" class="hover:text-accent transition-colors">About</a>
+                <a href="#services" class="hover:text-accent transition-colors">Services</a>
+                <a href="#work" class="hover:text-accent transition-colors">Portfolio</a>
+                <a href="#contact" class="bg-accent px-6 py-2.5 rounded text-white hover:bg-accent-dark transition-all">Hire Me</a>
+            </div>
+            <button class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="z-10">
+                <h4 class="hero-sub text-accent font-mono tracking-[0.3em] uppercase mb-4 opacity-0">Professional Web Expert</h4>
+                <h1 class="hero-title text-6xl lg:text-8xl font-bold leading-[1.1] mb-8 opacity-0">
+                    High-End <br/>
+                    <span class="text-gradient">Solutions.</span>
+                </h1>
+                <p class="hero-desc text-slate-400 text-lg md:text-xl max-w-lg mb-10 leading-relaxed opacity-0">
+                    I am <span class="text-white font-semibold">Yahaya Abdullahi Mana</span>. I build bespoke digital experiences that drive results for brands worldwide.
+                </p>
+                <div class="hero-btns flex items-center gap-6 opacity-0">
+                    <a href="#work" class="group flex items-center gap-3 font-bold text-white">
+                        <span class="bg-white/10 p-4 rounded-full group-hover:bg-accent group-hover:text-white transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                        Explore Work
+                    </a>
+                </div>
+            </div>
+            
+            <div class="relative hidden lg:block hero-img opacity-0 translate-x-12">
+                <div class="relative w-full max-w-lg mx-auto">
+                    <!-- Placeholder for Headshot -->
+                    <div class="aspect-[4/5] bg-dark-800 image-mask overflow-hidden border-2 border-accent/20">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop" 
+                             alt="Yahaya Mana" 
+                             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <!-- Decorative elements -->
+                    <div class="absolute -bottom-6 -left-6 bg-accent p-6 glass-card border-none">
+                        <p class="text-3xl font-bold">10+</p>
+                        <p class="text-xs uppercase tracking-widest opacity-80">Years Exp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Background Text -->
+        <div class="absolute bottom-0 right-0 text-[20rem] font-bold text-white/[0.02] leading-none select-none pointer-events-none translate-y-1/4">
+            DESIGN
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 bg-dark-900/50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+                <div class="reveal">
+                    <h2 class="text-accent font-mono uppercase tracking-widest mb-4">What I offer</h2>
+                    <h3 class="text-4xl md:text-5xl font-bold">Services & Expertise</h3>
+                </div>
+                <p class="text-slate-500 max-w-sm mt-4 md:mt-0 reveal">Tailored digital solutions designed to help your business grow and scale efficiently.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+                    <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+                        <svg class="w-7 h-7 text-accent group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Frontend Dev</h4>
+                    <p class="text-slate-400 leading-relaxed">Modern, responsive, and blazing-fast interfaces built with React, Next.js, and GSAP.</p>
+                </div>
+
+                <div class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+                    <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+                        <svg class="w-7 h-7 text-accent group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">E-Commerce</h4>
+                    <p class="text-slate-400 leading-relaxed">Custom Shopify and Webflow stores optimized for conversions and user experience.</p>
+                </div>
+
+                <div class="glass-card p-10 rounded-2xl hover:border-accent/50 transition-colors group reveal">
+                    <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
+                        <svg class="w-7 h-7 text-accent group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">UI/UX Design</h4>
+                    <p class="text-slate-400 leading-relaxed">Strategic design systems and prototypes that balance aesthetics with functionality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section id="work" class="py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center text-4xl font-bold mb-20 reveal">Selected Works</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Project Item -->
+                <div class="group cursor-pointer reveal">
+                    <div class="relative overflow-hidden rounded-3xl aspect-[16/10] mb-6">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop" 
+                             alt="Project 1" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-dark-950/40 group-hover:bg-dark-950/20 transition-all"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-accent font-mono text-sm mb-1 uppercase tracking-widest">Web Application</p>
+                            <h4 class="text-2xl font-bold">Fintech Dashboard 2.0</h4>
+                        </div>
+                        <span class="p-3 border border-white/20 rounded-full group-hover:bg-white group-hover:text-dark-950 transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Project Item 2 -->
+                <div class="group cursor-pointer mt-12 md:mt-24 reveal">
+                    <div class="relative overflow-hidden rounded-3xl aspect-[16/10] mb-6">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=2599&auto=format&fit=crop" 
+                             alt="Project 2" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-dark-950/40 group-hover:bg-dark-950/20 transition-all"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-accent font-mono text-sm mb-1 uppercase tracking-widest">Shopify</p>
+                            <h4 class="text-2xl font-bold">Luxe Watches Store</h4>
+                        </div>
+                        <span class="p-3 border border-white/20 rounded-full group-hover:bg-white group-hover:text-dark-950 transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-32 bg-dark-950">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-16 text-center reveal">Professional Journey</h2>
+            <div class="max-w-4xl mx-auto space-y-12">
+                <div class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
+                    <p class="text-accent font-mono w-32">2023 — PRES</p>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold mb-2">Senior Frontend Lead</h4>
+                        <p class="text-slate-500 mb-4">TechSolutions International</p>
+                        <p class="text-slate-400">Leading a team of 5 developers to create high-traffic React applications for global clients.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
+                    <p class="text-accent font-mono w-32">2020 — 2023</p>
+                    <div class="flex-1">
+                        <h4 class="text-2xl font-bold mb-2">Freelance Shopify Expert</h4>
+                        <p class="text-slate-500 mb-4">Self-Employed</p>
+                        <p class="text-slate-400">Delivered 30+ custom themes for e-commerce brands, focusing on performance and conversion rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 bg-dark-900/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center text-accent font-mono tracking-widest uppercase mb-12 reveal">Feedback</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="glass-card p-12 rounded-3xl reveal">
+                    <p class="text-xl italic text-slate-300 mb-8 leading-relaxed">"Yahaya transformed our vision into a stunning digital reality. His attention to detail in the frontend development was exactly what our brand needed."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-700 rounded-full"></div>
+                        <div>
+                            <p class="font-bold">Sarah Jenkins</p>
+                            <p class="text-sm text-slate-500">CEO, Bloom Digital</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-12 rounded-3xl reveal">
+                    <p class="text-xl italic text-slate-300 mb-8 leading-relaxed">"The speed and performance of our new Shopify store are incredible. Mana is a true professional who understands both design and code."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-700 rounded-full"></div>
+                        <div>
+                            <p class="font-bold">David Chen</p>
+                            <p class="text-sm text-slate-500">Founder, Chrono Labs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="pt-32 pb-12 bg-dark-950">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-32">
+                <h2 class="text-6xl md:text-8xl font-bold mb-10 reveal">Let's build your <span class="text-accent">Success</span>.</h2>
+                <a href="mailto:hello@yahayamana.com" class="text-3xl md:text-5xl font-light hover:text-accent transition-colors reveal">hello@yahayamana.com</a>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-12 text-slate-500 text-sm gap-6">
+                <p>&copy; 2026 Yahaya Abdullahi Mana. All Rights Reserved.</p>
+                <div class="flex gap-8 font-mono uppercase tracking-tighter">
+                    <a href="#" class="hover:text-white">LinkedIn</a>
+                    <a href="#" class="hover:text-white">Twitter</a>
+                    <a href="#" class="hover:text-white">Github</a>
+                    <a href="#" class="hover:text-white">Dribbble</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Entry Animations
+        const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+        tl.to('.hero-sub', { opacity: 1, y: 0, duration: 1 })
+          .to('.hero-title', { opacity: 1, y: 0, duration: 1.2 }, "-=0.8")
+          .to('.hero-desc', { opacity: 1, y: 0, duration: 1 }, "-=1")
+          .to('.hero-btns', { opacity: 1, y: 0, duration: 0.8 }, "-=0.8")
+          .to('.hero-img', { opacity: 1, x: 0, duration: 1.5, ease: "expo.out" }, "-=1.5");
+
+        // Scroll Reveals
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                },
+                y: 60,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>
+
+VERSION 3
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahaya Abdullahi Mana | Frontend Engineer & Web Designer</title>
+    <meta name="description" content="Portfolio of Yahaya Abdullahi Mana - Web Designer, Frontend Engineer, and UX Specialist.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0B1120', // Deep Navy (Not Black)
+                            800: '#151e32', // Lighter Navy for cards
+                            700: '#1e293b',
+                        },
+                        accent: {
+                            DEFAULT: '#06b6d4', // Cyan
+                            hover: '#0891b2',
+                            glow: 'rgba(6, 182, 212, 0.4)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B1120;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B1120;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+
+        /* Abstract Background Animation */
+        .bg-gradient-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+            filter: blur(60px);
+            animation: pulse-glow 8s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .clip-text-image {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #ffffff, #94a3b8);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #06b6d4;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-white">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-gradient-glow rounded-full mix-blend-screen"></div>
+        <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-dark-800 rounded-full blur-[100px] opacity-40"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBMMDQwIDAiIHN0cm9rZT0iIzFZMQ5M0IiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBmaWxsPSJub25lIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 left-0 bg-dark-900/80 backdrop-blur-md border-b border-white/5">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold font-mono tracking-tighter text-white">
+                YM<span class="text-accent">.</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="nav-link hover:text-white transition-colors">About</a>
+                <a href="#skills" class="nav-link hover:text-white transition-colors">Skills</a>
+                <a href="#work" class="nav-link hover:text-white transition-colors">Work</a>
+                <a href="#contact" class="px-5 py-2 border border-accent text-accent rounded-full hover:bg-accent hover:text-white transition-all duration-300">Let's Talk</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-dark-900 flex flex-col justify-center items-center space-y-8 md:hidden">
+        <button id="close-menu" class="absolute top-6 right-6 text-white">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <a href="#about" class="text-2xl text-slate-300 hover:text-accent mobile-link">About</a>
+        <a href="#skills" class="text-2xl text-slate-300 hover:text-accent mobile-link">Skills</a>
+        <a href="#work" class="text-2xl text-slate-300 hover:text-accent mobile-link">Work</a>
+        <a href="#contact" class="text-2xl text-accent mobile-link">Contact Me</a>
+    </div>
+
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center pt-20">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 order-2 md:order-1">
+                    <div class="overflow-hidden">
+                        <p class="hero-text text-accent font-mono text-lg mb-2 translate-y-full">Hello, I am</p>
+                    </div>
+                    <div class="overflow-hidden">
+                        <h1 class="hero-title text-5xl md:text-7xl font-bold leading-tight text-white translate-y-full">
+                            Yahaya <br/>
+                            <span class="text-slate-400">Abdullahi Mana</span>
+                        </h1>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="hero-desc text-slate-400 text-xl md:text-2xl max-w-lg mt-4 translate-y-full">
+                            Crafting digital experiences that merge <span class="text-white">aesthetics</span> with <span class="text-white">performance</span>.
+                        </p>
+                    </div>
+                    <div class="hero-btn opacity-0 pt-6 flex gap-4">
+                        <a href="#work" class="px-8 py-4 bg-accent text-white font-bold rounded-lg hover:bg-accent-hover transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)]">View Work</a>
+                        <a href="https://github.com/yahayaabdullahimana" target="_blank" class="px-8 py-4 border border-slate-600 text-slate-300 font-bold rounded-lg hover:border-white hover:text-white transition-all">GitHub</a>
+                    </div>
+                </div>
+                
+                <!-- Abstract Hero Graphic -->
+                <div class="hero-visual order-1 md:order-2 flex justify-center opacity-0 scale-90">
+                    <div class="relative w-full max-w-md aspect-square">
+                        <!-- Simulated Code/Design Interface Graphic -->
+                        <div class="absolute inset-0 bg-dark-800 rounded-2xl border border-slate-700 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-700">
+                            <div class="h-8 bg-dark-900 border-b border-slate-700 rounded-t-2xl flex items-center px-4 gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div class="h-4 bg-slate-700 rounded w-3/4 animate-pulse"></div>
+                                <div class="h-4 bg-slate-700 rounded w-1/2 animate-pulse delay-75"></div>
+                                <div class="grid grid-cols-2 gap-4 mt-8">
+                                    <div class="h-32 bg-slate-700/50 rounded border border-slate-600 border-dashed flex items-center justify-center text-slate-500 text-sm font-mono">&lt;Code/&gt;</div>
+                                    <div class="h-32 bg-accent/10 rounded border border-accent/30 flex items-center justify-center text-accent text-sm font-mono">Design</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-dark-900 rounded-lg border border-slate-700 shadow-xl flex items-center justify-center z-10 floating-icon">
+                            <span class="text-4xl">🚀</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Statistics Section -->
+        <section id="about" class="py-20 bg-dark-800/50 border-y border-white/5">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+                    <div class="md:w-1/2 reveal-left opacity-0">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Bridging the gap between <span class="text-accent">Design</span> & <span class="text-accent">Engineering</span></h2>
+                        <p class="text-slate-400 leading-relaxed mb-6">
+                            With over a decade of experience in the digital space, I specialize in building scalable web applications and e-commerce solutions. My background covers the full spectrum of development, from pixel-perfect UI design in Figma to robust backend integrations.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed">
+                            Currently focused on creating high-conversion platforms using modern technologies like React, Tailwind, and GSAP.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2 grid grid-cols-2 gap-6 w-full reveal-right opacity-0">
+                        <div class="p-6 bg-dark-900 rounded-xl border border-slate-800 text-center card-hover transition-all duration-300">
+                            <h3 class="text-4xl font-bold text-white mb-2 counter" data-target="14">0</h3>
+                            <p class="text-sm text-slate-500 font-mono uppercase tracking-wider">Years Experience</p>
+                        </div>
+                        <div class="p-6 bg-dark-900 rounded-xl border border-slate-800 text-center card-hover transition-all duration-300">
+                            <h3 class="text-4xl font-bold text-accent mb-2 counter" data-target="50">0</h3>
+                            <p class="text-sm text-slate-500 font-mono uppercase tracking-wider">Projects Completed</p>
+                        </div>
+                        <div class="p-6 bg-dark-900 rounded-xl border border-slate-800 text-center card-hover transition-all duration-300">
+                            <h3 class="text-4xl font-bold text-white mb-2">100%</h3>
+                            <p class="text-sm text-slate-500 font-mono uppercase tracking-wider">Client Satisfaction</p>
+                        </div>
+                        <div class="p-6 bg-dark-900 rounded-xl border border-slate-800 text-center card-hover transition-all duration-300">
+                            <h3 class="text-4xl font-bold text-accent mb-2">24/7</h3>
+                            <p class="text-sm text-slate-500 font-mono uppercase tracking-wider">Support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 relative overflow-hidden">
+            <div class="container mx-auto px-6 mb-12 text-center reveal-up opacity-0">
+                <h2 class="text-sm font-mono text-accent tracking-widest uppercase mb-2">My Stack</h2>
+                <h3 class="text-3xl font-bold text-white">Technologies I work with</h3>
+            </div>
+            
+            <!-- Skills Marquee -->
+            <div class="relative w-full overflow-hidden py-4 bg-dark-800 border-y border-white/5">
+                <div class="flex animate-marquee whitespace-nowrap gap-12 items-center">
+                    <!-- Duplicate items for seamless loop -->
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">HTML5</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">CSS3</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">JavaScript</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">React</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">GSAP</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">Tailwind</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">Shopify</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">WordPress</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">Figma</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">Git</span>
+                    <!-- Repeat -->
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">HTML5</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">CSS3</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">JavaScript</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">React</span>
+                    <span class="text-2xl font-bold text-slate-500 hover:text-white transition-colors">GSAP</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="work" class="py-24 bg-dark-900">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal-up opacity-0">
+                    <div>
+                        <h2 class="text-sm font-mono text-accent tracking-widest uppercase mb-2">Portfolio</h2>
+                        <h3 class="text-4xl font-bold text-white">Featured Projects</h3>
+                    </div>
+                    <a href="https://github.com/yahayaabdullahimana" class="hidden md:block text-slate-400 hover:text-accent transition-colors pb-1 border-b border-transparent hover:border-accent">View all projects -></a>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <div class="group project-card opacity-0 translate-y-12">
+                        <div class="relative overflow-hidden rounded-xl aspect-video bg-dark-800 border border-slate-800 cursor-pointer">
+                            <div class="absolute inset-0 bg-slate-800 group-hover:bg-slate-700 transition-colors flex items-center justify-center">
+                                <!-- Abstract Placeholder for Project Image -->
+                                <div class="w-full h-full flex items-center justify-center text-slate-600 group-hover:scale-105 transition-transform duration-500">
+                                    <svg class="w-20 h-20 opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11z"/><path d="M12 22l5.5-9h-11z"/></svg>
+                                </div>
+                            </div>
+                            <!-- Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent opacity-80"></div>
+                            <div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <h4 class="text-2xl font-bold text-white mb-2">E-Commerce Platform</h4>
+                                <p class="text-slate-400 text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Shopify / Liquid / Custom Theme</p>
+                                <span class="text-accent text-sm font-mono">View Case Study &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="group project-card opacity-0 translate-y-12">
+                        <div class="relative overflow-hidden rounded-xl aspect-video bg-dark-800 border border-slate-800 cursor-pointer">
+                            <div class="absolute inset-0 bg-slate-800 group-hover:bg-slate-700 transition-colors flex items-center justify-center">
+                                <div class="w-full h-full flex items-center justify-center text-slate-600 group-hover:scale-105 transition-transform duration-500">
+                                    <svg class="w-20 h-20 opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent opacity-80"></div>
+                            <div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <h4 class="text-2xl font-bold text-white mb-2">Corporate Identity</h4>
+                                <p class="text-slate-400 text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">WordPress / Branding / UI/UX</p>
+                                <span class="text-accent text-sm font-mono">View Case Study &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="group project-card opacity-0 translate-y-12">
+                        <div class="relative overflow-hidden rounded-xl aspect-video bg-dark-800 border border-slate-800 cursor-pointer">
+                            <div class="absolute inset-0 bg-slate-800 group-hover:bg-slate-700 transition-colors flex items-center justify-center">
+                                <div class="w-full h-full flex items-center justify-center text-slate-600 group-hover:scale-105 transition-transform duration-500">
+                                    <svg class="w-20 h-20 opacity-20" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent opacity-80"></div>
+                            <div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <h4 class="text-2xl font-bold text-white mb-2">SaaS Dashboard</h4>
+                                <p class="text-slate-400 text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">React / Tailwind / Chart.js</p>
+                                <span class="text-accent text-sm font-mono">View Case Study &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="group project-card opacity-0 translate-y-12">
+                        <div class="relative overflow-hidden rounded-xl aspect-video bg-dark-800 border border-slate-800 cursor-pointer">
+                            <div class="absolute inset-0 bg-slate-800 group-hover:bg-slate-700 transition-colors flex items-center justify-center">
+                                <div class="w-full h-full flex items-center justify-center text-slate-600 group-hover:scale-105 transition-transform duration-500">
+                                    <svg class="w-20 h-20 opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l10 20H2z"/></svg>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent opacity-80"></div>
+                            <div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <h4 class="text-2xl font-bold text-white mb-2">Agency Portfolio</h4>
+                                <p class="text-slate-400 text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">HTML5 / GSAP / WebGL</p>
+                                <span class="text-accent text-sm font-mono">View Case Study &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / Contact Section -->
+        <section id="contact" class="py-32 relative">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark-900 to-dark-800"></div>
+            <div class="container mx-auto px-6 relative z-10 text-center">
+                <h2 class="text-5xl md:text-6xl font-bold text-white mb-6 reveal-up opacity-0">Ready to start a project?</h2>
+                <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto reveal-up opacity-0">Let's build something amazing together. Whether it's a new website or a complete rebrand, I'm here to help.</p>
+                
+                <div class="reveal-up opacity-0">
+                    <a href="mailto:hello@yahaya.com" class="inline-block px-10 py-5 bg-accent text-white font-bold text-lg rounded-full hover:scale-105 transition-transform shadow-[0_0_40px_rgba(6,182,212,0.4)]">
+                        Get In Touch
+                    </a>
+                </div>
+
+                <div class="mt-20 flex justify-center space-x-8 text-slate-500 reveal-up opacity-0">
+                    <a href="#" class="hover:text-accent transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-accent transition-colors">Twitter/X</a>
+                    <a href="#" class="hover:text-accent transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-accent transition-colors">Behance</a>
+                </div>
+
+                <footer class="mt-20 text-slate-600 text-sm">
+                    <p>&copy; 2026 Yahaya Abdullahi Mana. All rights reserved.</p>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts for Animation -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Hero Animations
+        const tl = gsap.timeline();
+
+        tl.to('.hero-text', {
+            y: 0,
+            duration: 0.8,
+            ease: "power4.out"
+        })
+        .to('.hero-title', {
+            y: 0,
+            duration: 1,
+            ease: "power4.out",
+            stagger: 0.2
+        }, "-=0.6")
+        .to('.hero-desc', {
+            y: 0,
+            duration: 1,
+            ease: "power4.out"
+        }, "-=0.8")
+        .to('.hero-btn', {
+            opacity: 1,
+            duration: 0.8
+        }, "-=0.5")
+        .to('.hero-visual', {
+            opacity: 1,
+            scale: 1,
+            duration: 1.2,
+            ease: "back.out(1.7)"
+        }, "-=1");
+
+        // Floating Animation for visual elements
+        gsap.to('.floating-icon', {
+            y: -15,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        // Scroll Reveal Animations
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.fromTo(elem, 
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                    }
+                }
+            );
+        });
+
+        gsap.fromTo('.reveal-left', 
+            { x: -50, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: '#about',
+                    start: "top 80%",
+                }
+            }
+        );
+
+        gsap.fromTo('.reveal-right', 
+            { x: 50, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: '#about',
+                    start: "top 80%",
+                }
+            }
+        );
+
+        // Project Cards Stagger
+        gsap.utils.toArray('.project-card').forEach((card, i) => {
+            gsap.to(card, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: i * 0.1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%",
+                }
+            });
+        });
+
+        // Marquee Animation
+        gsap.to(".animate-marquee", {
+            xPercent: -50,
+            repeat: -1,
+            duration: 20,
+            ease: "linear",
+        });
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            gsap.to(counter, {
+                innerHTML: target,
+                duration: 2,
+                scrollTrigger: {
+                    trigger: counter,
+                    start: "top 85%",
+                    once: true
+                },
+                snap: { innerHTML: 1 }
+            });
+        });
+
+    </script>
+</body>
+</html>
