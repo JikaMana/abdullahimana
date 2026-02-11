@@ -271,13 +271,24 @@
           <!-- Node.js -->
           <div
             class="tech-card bg-surface border border-white/5 p-8 rounded-lg flex flex-col items-center gap-4 reveal">
-            <img
-              src="https://cdn.simpleicons.org/nodedotjs/339933"
-              class="w-10 h-10 tech-icon"
-              alt="Node.js" />
+            <div class="flex gap-2">
+              <img
+                src="https://cdn.simpleicons.org/nodedotjs/339933"
+                class="w-10 h-10 tech-icon"
+                alt="Node.js" />
+              <svg
+                role="img"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-10 h-10 tech-icon">
+                <title>Express</title>
+                <path
+                  d="M24 18.588a1.529 1.529 0 01-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 01-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 011.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 011.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 000 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.078 4.078 0 002.582-2.876c.207-.666.548-.78 1.174-.588a5.417 5.417 0 01-2.589 3.957 6.272 6.272 0 01-7.306-.933 6.575 6.575 0 01-1.64-3.858c0-.235-.08-.455-.134-.666A88.33 88.33 0 010 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z" />
+              </svg>
+            </div>
             <span
               class="text-xs font-mono uppercase tracking-widest text-secondary">
-              Node.js
+              (Node+Express).js
             </span>
           </div>
 
@@ -454,6 +465,9 @@
                 <span class="border border-white/10 px-2 py-1 rounded"
                   >Express.js</span
                 >
+                <span class="border border-white/10 px-2 py-1 rounded"
+                  >MongoDB</span
+                >
               </div>
             </div>
           </div>
@@ -488,9 +502,6 @@
                 <span class="border border-white/10 px-2 py-1 rounded"
                   >Tailwind CSS</span
                 >
-                <span class="border border-white/10 px-2 py-1 rounded"
-                  >Firebase</span
-                >
               </div>
             </div>
           </div>
@@ -524,9 +535,6 @@
                 >
                 <span class="border border-white/10 px-2 py-1 rounded"
                   >Tailwind CSS</span
-                >
-                <span class="border border-white/10 px-2 py-1 rounded"
-                  >Firebase</span
                 >
               </div>
             </div>
@@ -577,34 +585,6 @@
             </p>
           </div>
 
-          <!-- Mobile -->
-          <div class="glass-card p-10 rounded-2xl reveal">
-            <div
-              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8">
-              <svg
-                class="w-7 h-7 text-accent group-hover:text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2z" />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M11 18h2" />
-              </svg>
-            </div>
-            <h4 class="text-2xl font-bold mb-4">Mobile Development</h4>
-            <p class="text-slate-400 leading-relaxed">
-              Cross-platform mobile applications using React Native and Expo,
-              focused on performance, scalability, and real-world use cases.
-            </p>
-          </div>
-
           <!-- Backend -->
           <div class="glass-card p-10 rounded-2xl reveal">
             <div
@@ -635,6 +615,34 @@
             <p class="text-slate-400 leading-relaxed">
               RESTful APIs and backend logic built with Node.js, Express,
               MongoDB, and PostgreSQL, designed for security and scalability.
+            </p>
+          </div>
+
+          <!-- Mobile -->
+          <div class="glass-card p-10 rounded-2xl reveal">
+            <div
+              class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center mb-8">
+              <svg
+                class="w-7 h-7 text-accent group-hover:text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 2h10a2 2 0 012 2v16a2 2 0 01-2 2H7a2 2 0 01-2-2V4a2 2 0 012-2z" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 18h2" />
+              </svg>
+            </div>
+            <h4 class="text-2xl font-bold mb-4">Mobile Development</h4>
+            <p class="text-slate-400 leading-relaxed">
+              Cross-platform mobile applications using React Native and Expo,
+              focused on performance, scalability, and real-world use cases.
             </p>
           </div>
 
@@ -743,7 +751,7 @@
           <!-- Freelance -->
           <div
             class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
-            <p class="text-accent font-mono w-32">03/2025 – Present</p>
+            <p class="text-accent font-mono w-32">08/2023 – Present</p>
             <div class="flex-1">
               <h4 class="text-2xl font-bold mb-2">Freelance Web Developer</h4>
               <p class="text-slate-500 mb-4">Self-Employed</p>
@@ -758,7 +766,7 @@
           <!-- Kwilax -->
           <div
             class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
-            <p class="text-accent font-mono w-32">03/2025 – Present</p>
+            <p class="text-accent font-mono w-32">08/2024 – Present</p>
             <div class="flex-1">
               <h4 class="text-2xl font-bold mb-2">Frontend Developer</h4>
               <p class="text-slate-500 mb-4">Kwilax | Remote, Nigeria</p>
@@ -767,26 +775,6 @@
                 streamlined cross-border payments, improving transaction speed
                 by 30% and enhancing user experience for Nigerian businesses
                 funding Alipay in yuan.
-              </p>
-            </div>
-          </div>
-
-          <!-- Byteflow Technologies -->
-          <div
-            class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
-            <p class="text-accent font-mono w-32">03/2025 – Present</p>
-            <div class="flex-1">
-              <h4 class="text-2xl font-bold mb-2">
-                Full-Stack Developer Intern
-              </h4>
-              <p class="text-slate-500 mb-4">
-                Byteflow Technologies | Abuja, Nigeria
-              </p>
-              <p class="text-slate-400">
-                Built scalable user interfaces and REST APIs for ByteArchive
-                (cloud storage) and ByteCollect (school payments), improving
-                system performance by 25% and reducing manual processing time by
-                40%.
               </p>
             </div>
           </div>
@@ -802,6 +790,26 @@
                 Developed and optimized the organization’s website, implementing
                 forums, blogs, and event features that increased student
                 engagement by 60% and improved mobile and desktop accessibility.
+              </p>
+            </div>
+          </div>
+
+          <!-- Byteflow Technologies -->
+          <div
+            class="flex flex-col md:flex-row gap-8 pb-12 border-b border-white/5 reveal">
+            <p class="text-accent font-mono w-32">07/2025 – 09/2025</p>
+            <div class="flex-1">
+              <h4 class="text-2xl font-bold mb-2">
+                Full-Stack Developer Intern
+              </h4>
+              <p class="text-slate-500 mb-4">
+                Byteflow Technologies | Abuja, Nigeria
+              </p>
+              <p class="text-slate-400">
+                Built scalable user interfaces and REST APIs for ByteArchive
+                (cloud storage) and ByteCollect (school payments), improving
+                system performance by 25% and reducing manual processing time by
+                40%.
               </p>
             </div>
           </div>
@@ -826,17 +834,17 @@
           </div>
           <div class="flex gap-8 text-sm font-medium text-secondary">
             <a
-              href="#"
+              href="https://www.instagram.com/mana_abdullahi/"
               class="hover:text-primary transition-colors"
               >Instagram</a
             >
             <a
-              href="#"
+              href="https://github.com/jikaMana"
               class="hover:text-primary transition-colors"
               >GitHub</a
             >
             <a
-              href="#"
+              href="https://www.linkedin.com/in/abdullahi-yahaya-mana-29a87a281/edit/intro/"
               class="hover:text-primary transition-colors"
               >LinkedIn</a
             >
@@ -851,7 +859,7 @@
             </script>
             Abdullahi Yahaya Mana
           </p>
-          <p>Full Stack Engineering / Nigeria</p>
+          <p>Full Stack Engineer / Nigeria</p>
         </div>
       </div>
     </footer>
