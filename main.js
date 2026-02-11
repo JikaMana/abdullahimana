@@ -91,13 +91,19 @@ function openProject(id) {
                                       .join("")}
                                 </div>
                             </div>
-                            <div class="pt-6 border-t border-white/10">
-                                <button onclick="closeModal()" class="text-sm font-bold text-white hover:text-accent transition-colors">Close Case Study</button>
-                            </div>
+                         
                         </div>
                     </div>
                 </div>
             `;
+
+  //    <div class="pt-6 border-t border-white/10">
+  //      <button
+  //        onclick="closeModal()"
+  //        class="text-sm font-bold text-white hover:text-accent transition-colors">
+  //        Close Case Study
+  //      </button>
+  //    </div>;
   modal.classList.remove("hidden");
   document.body.style.overflow = "hidden";
 }
